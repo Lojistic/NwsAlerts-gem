@@ -21,6 +21,18 @@ module Nws
           self
         end
 
+        def [](idx)
+          alerts[idx]
+        end
+
+        def first
+          alerts.first
+        end
+
+        def last
+          alerts.last
+        end
+
         def severe
           severity_filter_for('Severe')
         end

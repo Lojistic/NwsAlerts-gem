@@ -8,11 +8,16 @@ module Nws
         base_uri "https://api.weather.gov"
 
         def get_alerts
-          raw_result = self.class.get("/alerts?status=actual")
-          parsed     = JSON.parse(raw_result)
-          alerts     = Alert.from_api_response(parsed)
+          parsed     = fetch_raw_alerts
+          alerts     = Alert.from_api_response(self, parsed)
 
           return alerts
+        end
+
+        def fetch_raw_alerts(path = nil)
+          path ||=  "/alerts?message_type=alert&status=actual"
+          raw_result = self.class.get(path)
+          JSON.parse(raw_result)
         end
 
       end
