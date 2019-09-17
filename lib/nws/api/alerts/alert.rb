@@ -10,6 +10,7 @@ module Nws
 
         def self.from_api_response(client, parsed_response, alerts = nil)
           alerts ||= AlertSet.new
+          return alerts unless parsed_response['features']
           parsed_response['features'].each do |alert_data|
             alerts << self.new(alert_data)
           end

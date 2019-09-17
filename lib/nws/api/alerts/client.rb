@@ -15,7 +15,7 @@ module Nws
         end
 
         def fetch_raw_alerts(path = nil)
-          path ||=  "/alerts?message_type=alert&status=actual"
+          path ||= "/alerts?message_type=alert&status=actual"
           raw_result = self.class.get(path)
           JSON.parse(raw_result)
         end
