@@ -21,6 +21,9 @@ module Nws
           self
         end
 
+        alias length count
+        alias size count
+
         def [](idx)
           alerts[idx]
         end

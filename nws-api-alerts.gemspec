@@ -6,8 +6,8 @@ require "nws/api/alerts/version"
 Gem::Specification.new do |spec|
   spec.name          = "nws-api-alerts"
   spec.version       = Nws::Api::Alerts::VERSION
-  spec.authors       = ["Steve Lewis"]
-  spec.email         = ["steve.l@lojistic.com"]
+  spec.authors       = ["Lojistic Dev Team"]
+  spec.email         = ["dev@lojistic.com"]
 
   spec.summary       = %q{ Simple wrapper around the NWS Alert API }
 
