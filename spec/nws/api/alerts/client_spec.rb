@@ -3,7 +3,7 @@ require 'spec_helper'
 RSpec.describe Nws::Api::Alerts::Client do
 
   describe "#get_alerts" do
-    it "returns an AlertSet" do
+    it "should return an AlertSet" do
       expect(Nws::Api::Alerts::Client).to receive(:get).and_return("{}")
 
       client = Nws::Api::Alerts::Client.new
@@ -14,7 +14,7 @@ RSpec.describe Nws::Api::Alerts::Client do
   end
 
   describe "#fetch_raw_alerts" do
-    it "returns parsed JSON" do
+    it "should return parsed JSON" do
       client = Nws::Api::Alerts::Client.new
       raw_alerts = client.fetch_raw_alerts
 

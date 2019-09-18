@@ -8,7 +8,7 @@ RSpec.describe Nws::Api::Alerts::Alert do
 
   describe "::from_api_response" do
 
-    it "returns an AlertSet" do
+    it "should return an AlertSet" do
       client    = instance_double(Nws::Api::Alerts::Client)
       alert_set = Nws::Api::Alerts::Alert.from_api_response(client, JSON.parse(raw_data))
 
@@ -17,7 +17,7 @@ RSpec.describe Nws::Api::Alerts::Alert do
 
     context "when it receives a paged response" do
 
-      it "attempts to retrieve the next page of results" do
+      it "should attempt to retrieve the next page of results" do
         client    = instance_double(Nws::Api::Alerts::Client)
         expect(client).to receive(:fetch_raw_alerts).and_return("{}")
         alert_set = Nws::Api::Alerts::Alert.from_api_response(client, JSON.parse(raw_data_paged))
@@ -32,7 +32,7 @@ RSpec.describe Nws::Api::Alerts::Alert do
   describe "#new" do
     let(:alert_data){ JSON.parse(raw_data)['features'].first }
 
-    it "sets attributes based on alert data" do
+    it "should set attributes based on alert data" do
       alert = Nws::Api::Alerts::Alert.new(alert_data)
 
       expect(alert.nws_id).to eq(alert_data['properties']['id'])
@@ -45,12 +45,12 @@ RSpec.describe Nws::Api::Alerts::Alert do
       expect(alert.instruction).to eq(alert_data['properties']['instruction'])
     end
 
-    it "sets geometry when it's available" do
+    it "should set geometry when it's available" do
       alert = Nws::Api::Alerts::Alert.new(alert_data)
       expect(alert.geometry).to_not be_nil
     end
 
-    it "doesn't set geometry when it's not available" do
+    it "should not set geometry when it's not available" do
       no_geo_alert_data = JSON.parse(raw_data)['features'][1]
       alert = Nws::Api::Alerts::Alert.new(no_geo_alert_data)
 

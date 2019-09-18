@@ -7,7 +7,7 @@ RSpec.describe Nws::Api::Alerts::AlertSet do
   let(:alert_set) { Nws::Api::Alerts::AlertSet.new(alert_array) }
 
   describe "#new" do
-    it "sets it's internal `alerts` attribute to the passed array of Alerts" do
+    it "should set it's internal `alerts` attribute to the passed array of Alerts" do
       expect(alert_set.alerts).to eq(alert_array)
     end
 
@@ -15,7 +15,7 @@ RSpec.describe Nws::Api::Alerts::AlertSet do
 
   context "the Enumerable implementation" do
 
-    it "adds the passed alert to the AlertSet when calling #<<" do
+    it "should add the passed alert to the AlertSet when calling #<<" do
       alert = alert_array.shift
 
       short_alert_set = Nws::Api::Alerts::AlertSet.new(alert_array)
@@ -27,23 +27,23 @@ RSpec.describe Nws::Api::Alerts::AlertSet do
       expect(short_alert_set.alerts).to include(alert)
     end
 
-    it "iterates through the underlying alerts array when calling #each" do
+    it "should iterate through the underlying alerts array when calling #each" do
       alert_set.each_with_index do |alert, idx|
         expect(alert_array[idx]).to eq(alert)
       end
     end
 
-    it "returns the alert in the alert array at the specified index when calling #[]" do
+    it "should return the alert in the alert array at the specified index when calling #[]" do
       (0..alert_array.length - 1).each do |i|
         expect(alert_set[i]).to eq(alert_array[i])
       end
     end
 
-    it "returns the first element of the alert array when calling #first" do
+    it "should return the first element of the alert array when calling #first" do
       expect(alert_set.first).to eq(alert_array.first)
     end
 
-    it "returns the last element of the alert array when calling #last" do
+    it "should return the last element of the alert array when calling #last" do
       expect(alert_set.last).to eq(alert_array.last)
     end
 
@@ -53,19 +53,19 @@ RSpec.describe Nws::Api::Alerts::AlertSet do
 
     describe "the severity filters" do
 
-      it "returns severe severity weather alerts when you call #severe" do
+      it "should return severe severity weather alerts when you call #severe" do
         expect(alert_set.severe.map(&:severity).uniq).to eq(['Severe'])
       end
 
-      it "returns moderate serverity weather alerts when you call #moderate" do
+      it "should return moderate serverity weather alerts when you call #moderate" do
         expect(alert_set.moderate.map(&:severity).uniq).to eq(['Moderate'])
       end
 
-      it "returns minor severity weather alerts when you call #minor" do
+      it "should return minor severity weather alerts when you call #minor" do
         expect(alert_set.minor.map(&:severity).uniq).to eq(['Minor'])
       end
 
-      it "returns unknown severity weather alerts when you call #unknown_severity" do
+      it "should return unknown severity weather alerts when you call #unknown_severity" do
         expect(alert_set.unknown_severity.map(&:severity).uniq).to eq(['Unknown'])
       end
 
@@ -79,19 +79,19 @@ RSpec.describe Nws::Api::Alerts::AlertSet do
         #expect(alert_set.past.map(&:urgency).uniq) .to eq(['Past'])
       #end
 
-      it "returns immediate urgency weather alerts when you call #immediate" do
+      it "should return immediate urgency weather alerts when you call #immediate" do
         expect(alert_set.immediate.map(&:urgency).uniq) .to eq(['Immediate'])
       end
 
-      it "returns expected urgency weather alerts when you call #expected" do
+      it "should return expected urgency weather alerts when you call #expected" do
         expect(alert_set.expected.map(&:urgency).uniq) .to eq(['Expected'])
       end
 
-      it "returns future urgency weather alerts when you call #future" do
+      it "should return future urgency weather alerts when you call #future" do
         expect(alert_set.future.map(&:urgency).uniq) .to eq(['Future'])
       end
 
-      it "returns unknown urgency weather alerts when you call #unknown_urgency" do
+      it "should return unknown urgency weather alerts when you call #unknown_urgency" do
         expect(alert_set.unknown_urgency.map(&:urgency).uniq) .to eq(['Unknown'])
       end
 
@@ -99,19 +99,19 @@ RSpec.describe Nws::Api::Alerts::AlertSet do
 
     describe "the certainty filters" do
 
-      it "returns observed certainty weather alerts when you call #observed" do
+      it "should return observed certainty weather alerts when you call #observed" do
         expect(alert_set.observed.map(&:certainty).uniq) .to eq(['Observed'])
       end
 
-      it "returns likely certainty weather alerts when you call #likely" do
+      it "should return likely certainty weather alerts when you call #likely" do
         expect(alert_set.likely.map(&:certainty).uniq) .to eq(['Likely'])
       end
 
-      it "returns possible certainty weather alerts when you call #possible" do
+      it "should return possible certainty weather alerts when you call #possible" do
         expect(alert_set.possible.map(&:certainty).uniq) .to eq(['Possible'])
       end
 
-      it "returns unknown certainty weather alerts when you call #unknown_certainty" do
+      it "should return unknown certainty weather alerts when you call #unknown_certainty" do
         expect(alert_set.unknown_certainty.map(&:certainty).uniq) .to eq(['Unknown'])
       end
 
@@ -119,11 +119,11 @@ RSpec.describe Nws::Api::Alerts::AlertSet do
 
     describe "geometry filtering" do
 
-      it "excludes alerts without geometry when you call #with_geometry" do
+      it "should exclude alerts without geometry when you call #with_geometry" do
         expect(alert_set.without_geometry.map(&:geometry).uniq).to eq([nil])
       end
 
-      it "excludes alerts with geometry when you call #without_geometry" do
+      it "should exclude alerts with geometry when you call #without_geometry" do
         expect(alert_set.with_geometry.map(&:geometry).uniq).to_not include(nil)
       end
 
