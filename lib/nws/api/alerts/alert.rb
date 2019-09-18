@@ -19,7 +19,7 @@ module Nws
             next_uri = URI.parse(parsed_response['pagination']['next'])
             next_path = next_uri.to_s.gsub("#{next_uri.scheme}://#{next_uri.host}", '')
 
-            self.from_api_response(client, client.fetch_raw_alerts(next_path), alerts)
+            self.from_api_response(client, client.fetch_raw_alerts(path: next_path), alerts)
           end
 
           return alerts
