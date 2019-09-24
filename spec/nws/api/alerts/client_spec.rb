@@ -31,6 +31,16 @@ RSpec.describe Nws::Api::Alerts::Client do
       end
     end
 
+    context "when given array parameters for the API call" do
+
+      it "should add the joined parameters to the endpoint URL" do
+        expect(Nws::Api::Alerts::Client).to receive(:get).with("/alerts?message_type=alert&status=actual&urgency=future,immediate&severity=severe,moderate").and_return("{}")
+        client = Nws::Api::Alerts::Client.new
+        client.fetch_raw_alerts(severity: ['severe', 'moderate'], urgency: ['future', 'immediate'])
+      end
+
+    end
+
   end
 
 
